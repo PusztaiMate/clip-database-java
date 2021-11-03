@@ -1,0 +1,25 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group 'hu.pumate'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    runtimeOnly group: 'com.h2database', name: 'h2'
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
