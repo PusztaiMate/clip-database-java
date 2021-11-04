@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ClipServiceTest {
@@ -47,6 +46,15 @@ public class ClipServiceTest {
         assertTrue(c2.isPresent());
         assertEquals(c1.getId(), c2.get().getId());
         assertEquals(c1.getUrl(), c2.get().getUrl());
+    }
+
+    @Test
+    public void getClip_ClipIsNotPresent() {
+        when(mockRepository.findById(any())).thenReturn(Optional.empty());
+
+        Optional<Clip> c = clipService.getClip(1L);
+
+        assertTrue(c.isEmpty());
     }
 
     @Test
